@@ -1,0 +1,106 @@
+[
+  {
+    "method": "json",
+    "type": "mapgen",
+    "om_terrain": "Residential",
+    "//": "Simple one-story house",
+    "weight": 100,
+    "object": {
+      "fill_ter": "t_region_groundcover_urban",
+      "rows": [
+        "........................",
+        ".%%...................%%",
+        ".%##oo####*####oo##%..%.",
+        "..#             d#....%.",
+        "..#  @@   fffff d#......",
+        "..#  @@       h d#......",
+        "..#       hffh  D#......",
+        "..#####+###  #####+##%..",
+        "..#t-9|S+    |12345|F#..",
+        "..#--|S|     +     |O#..",
+        "..####o#  HHH|#oo###o#..",
+        "..#     ll   |  Rx  #..",
+        "..#E      TyE|  Rr  o..",
+        "..#     ll   |      #..",
+        "..#o####*#####oo#####..",
+        "..^..................^..",
+        "........................",
+        "..``````````````````....",
+        "..``````````````````....",
+        "..p......%%.........%%..",
+        "........................",
+        "........................",
+        "........................",
+        "........................"
+      ],
+      "palettes": ["standard_domestic_palette"],
+      "terrain": {
+        "-": "t_linoleum_gray",
+        "1": "t_linoleum_gray",
+        "2": "t_linoleum_gray",
+        "3": "t_linoleum_gray",
+        "4": "t_linoleum_gray",
+        "5": "t_linoleum_gray"
+      },
+      "furniture": {
+        "1": "f_cupboard",
+        "2": "f_cupboard",
+        "3": "f_cupboard",
+        "4": "f_counter",
+        "5": "f_sink"
+      }
+    }
+  },
+  {
+    "method": "json",
+    "type": "mapgen",
+    "om_terrain": "Residential",
+    "//": "Two-story look house variant",
+    "weight": 80,
+    "object": {
+      "fill_ter": "t_region_groundcover_urban",
+      "rows": [
+        "........................",
+        ".%...................%..",
+        ".%##oo######*#####oo##%.",
+        "..#               d#....",
+        "..#  @@    fffff  d#....",
+        "..#  @@  h     h  d#....",
+        "..#      hffffh   D#....",
+        "..#+#####      #+####%..",
+        "..#t-9| +   E  |  Rx#%..",
+        "..#--|S|  ll   +  Rr#...",
+        "..####o#  ll   |####o...",
+        "..# |  |       |   Y#...",
+        "..#F+  | HH  HH|12345...",
+        "..#O|  |       |    o...",
+        "..#oo###oo#*####+#####..",
+        "..^..................^..",
+        "........................",
+        "..`````````.............",
+        "..`````````.............",
+        "..p.........%%......%%..",
+        "........................",
+        "........................",
+        "........................",
+        "........................"
+      ],
+      "palettes": ["standard_domestic_palette"],
+      "terrain": {
+        "-": "t_linoleum_white",
+        "1": "t_linoleum_white",
+        "2": "t_linoleum_white",
+        "3": "t_linoleum_white",
+        "4": "t_linoleum_white",
+        "5": "t_linoleum_white"
+      },
+      "furniture": {
+        "1": "f_cupboard",
+        "2": "f_cupboard",
+        "3": "f_sink",
+        "4": "f_counter",
+        "5": "f_oven"
+      }
+    }
+  }
+]

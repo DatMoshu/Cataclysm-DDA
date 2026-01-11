@@ -1,0 +1,55 @@
+[
+  {
+    "type": "palette",
+    "id": "standard_domestic_palette",
+    "terrain": {
+      ".": "t_floor",
+      "#": "t_wall",
+      "+": [["t_door_c", 5], ["t_door_o", 1]],
+      "o": [["t_window_domestic", 10], "t_curtains"],
+      "*": "t_door_locked",
+      " ": "t_floor",
+      "-": "t_sidewalk",
+      "%": ["t_region_shrub", "t_region_shrub_decorative"],
+      "^": "t_gutter_downspout",
+      "`": "t_concrete"
+    },
+    "furniture": {
+      "@": "f_bed",
+      "d": "f_dresser",
+      "D": "f_wardrobe",
+      "f": "f_table",
+      "h": "f_chair",
+      "H": "f_sofa",
+      "E": "f_armchair",
+      "l": "f_coffee_table",
+      "r": "f_desk",
+      "R": "f_bookcase",
+      "t": "f_toilet",
+      "9": "f_shower",
+      "B": "f_bathtub",
+      "S": "f_sink",
+      "F": "f_fridge",
+      "O": "f_oven",
+      "n": "f_dishwasher",
+      "W": "f_washer",
+      "Z": "f_dryer",
+      "Y": "f_trashcan",
+      "p": "f_mailbox",
+      "T": "f_floor_lamp",
+      "x": "f_entertainment_center",
+      "y": ["f_indoor_plant", "f_indoor_plant_y"]
+    },
+    "items": {
+      "@": { "item": "bed", "chance": 50 },
+      "d": [
+        { "item": "SUS_dresser_mens", "chance": 50, "repeat": [1, 2] },
+        { "item": "SUS_dresser_womens", "chance": 50, "repeat": [1, 2] }
+      ],
+      "R": { "item": "homebooks", "chance": 40, "repeat": [1, 4] },
+      "F": { "item": "SUS_fridge", "chance": 100 },
+      "Y": { "item": "trash", "chance": 30, "repeat": [1, 4] },
+      "p": { "item": "mail", "chance": 30, "repeat": [2, 5] }
+    }
+  }
+]
