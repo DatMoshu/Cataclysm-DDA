@@ -12,6 +12,7 @@ namespace CataMapGen.Overmap
         private readonly WaterGenerator _waterGen;
         private readonly CityGenerator _cityGen;
         private readonly RoadGenerator _roadGen;
+        private readonly SpecialsGenerator _specialsGen;
 
         public OvermapGenerator(Overmap overmap)
         {
@@ -20,6 +21,7 @@ namespace CataMapGen.Overmap
             _waterGen = new WaterGenerator(overmap);
             _cityGen = new CityGenerator(overmap);
             _roadGen = new RoadGenerator(overmap);
+            _specialsGen = new SpecialsGenerator(overmap);
         }
 
         /// <summary>
@@ -50,7 +52,11 @@ namespace CataMapGen.Overmap
             if (settings.PlaceRoads)
                 _roadGen.PlaceRoads();
 
-            // 4. Polish
+            // 4. Specials (hospitals, gas stations, etc)
+            if (settings.PlaceCities)
+                _specialsGen.PlaceSpecials();
+
+            // 5. Polish
             _waterGen.PolishRivers();
         }
 

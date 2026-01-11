@@ -33,7 +33,18 @@ namespace CataMapGen.Overmap
         Commercial,
         Industrial,
         
-        // Special
+        // Special Buildings
+        Hospital,
+        Mall,
+        GasStation,
+        Police,
+        FireStation,
+        School,
+        Church,
+        Park,
+        Cemetery,
+        
+        // Infrastructure
         Bridge,
         Empty,
         SolidEarth,  // Underground
@@ -167,6 +178,16 @@ namespace CataMapGen.Overmap
                 case OvermapTerrainType.Residential: return 'H';
                 case OvermapTerrainType.Commercial: return 'C';
                 case OvermapTerrainType.Industrial: return 'I';
+                // Special buildings
+                case OvermapTerrainType.Hospital: return 'X';
+                case OvermapTerrainType.Mall: return 'M';
+                case OvermapTerrainType.GasStation: return 'G';
+                case OvermapTerrainType.Police: return 'P';
+                case OvermapTerrainType.FireStation: return 'f';
+                case OvermapTerrainType.School: return 's';
+                case OvermapTerrainType.Church: return '+';
+                case OvermapTerrainType.Park: return 'O';
+                case OvermapTerrainType.Cemetery: return 'c';
                 case OvermapTerrainType.Bridge: return '=';
                 default: return '?';
             }

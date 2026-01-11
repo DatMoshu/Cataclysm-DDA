@@ -278,31 +278,47 @@ namespace CataMapGen.Overmap
                         }
                     }
 
-                    // Fill enclosed areas with buildings
+                    // Fill enclosed areas with buildings - ONLY if adjacent to road
                     if (enclosed && area.Count > 0 && area.Count < 100)
                     {
                         foreach (var fillPoint in area)
                         {
-                            if (!_overmap.GetTile(fillPoint).IsWater)
+                            var fillTile = _overmap.GetTile(fillPoint);
+                            if (fillTile.IsWater) continue;
+                            
+                            // Only place if adjacent to a road
+                            if (!IsAdjacentToRoad(fillPoint)) continue;
+
+                            City nearestCity = FindNearestCity(fillPoint);
+                            if (nearestCity != null)
                             {
-                                // Find nearest city for building type
-                                City nearestCity = FindNearestCity(fillPoint);
-                                if (nearestCity != null)
-                                {
-                                    int dist = nearestCity.DistanceTo(fillPoint);
-                                    float ratio = (dist * 100f) / Math.Max(nearestCity.Size, 1);
-                                    var building = ratio < 50 ? OvermapTerrainType.Commercial : OvermapTerrainType.Residential;
-                                    _overmap.SetTerrain(fillPoint, building);
-                                }
-                                else
-                                {
-                                    _overmap.SetTerrain(fillPoint, OvermapTerrainType.Residential);
-                                }
+                                int dist = nearestCity.DistanceTo(fillPoint);
+                                float ratio = (dist * 100f) / Math.Max(nearestCity.Size, 1);
+                                var building = ratio < 50 ? OvermapTerrainType.Commercial : OvermapTerrainType.Residential;
+                                _overmap.SetTerrain(fillPoint, building);
+                            }
+                            else
+                            {
+                                _overmap.SetTerrain(fillPoint, OvermapTerrainType.Residential);
                             }
                         }
                     }
                 }
             }
+        }
+
+        /// <summary>
+        /// Check if position has at least one adjacent road tile
+        /// </summary>
+        private bool IsAdjacentToRoad(Point2D pos)
+        {
+            foreach (var dir in new[] { OmDirection.North, OmDirection.East, OmDirection.South, OmDirection.West })
+            {
+                var neighbor = pos + dir.ToOffset();
+                var tile = _overmap.GetTile(neighbor);
+                if (tile != null && tile.IsRoad) return true;
+            }
+            return false;
         }
 
         private City FindNearestCity(Point2D pos)
