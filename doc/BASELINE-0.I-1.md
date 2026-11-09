@@ -104,7 +104,7 @@ Disposable world only. No path under `$HOME` or `./save` was created.
 | Quit | `q`, then `Y`. Process exit code 0. |
 | Reload | New process, same `--userdir`. Menu showed `Kennard Corner (1)`. Return, then `1` (the character row's key). Same shelter, same log lines, inventory still had the ear plugs. |
 
-The key log, including two load-menu attempts that did not load the character, is `tools/vm-baseline/playtest-keys.log`. The successful reload keys were Return and `1`.
+The key log, including two load-menu attempts that did not load the character, is `tools/vm-baseline/playtest-keys.txt`. The successful reload keys were Return and `1`.
 
 ## What this VM does not keep
 

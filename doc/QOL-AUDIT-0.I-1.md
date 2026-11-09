@@ -2,7 +2,7 @@
 
 Source of truth: commit `7b2efa5cea38e4d4d97dd0e63b28b9148623da59` (tag `0.I-1`) plus one play of that binary. Nothing in this document is implemented. Turn-based costs, danger, and explicit confirmation of destructive acts stay visible. This is not an auto-play design.
 
-Key counts below were produced by the key log in `tools/vm-baseline/playtest-keys.log` on the tiles build. Counts are for the sequence that actually changed game state. Failed keypresses during the reload attempt are listed separately and are not treated as required steps.
+Key counts below were produced by the key log in `tools/vm-baseline/playtest-keys.txt` on the tiles build. Counts are for the sequence that actually changed game state. Failed keypresses during the reload attempt are listed separately and are not treated as required steps.
 
 ## What already helps
 
