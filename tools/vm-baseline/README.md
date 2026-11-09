@@ -8,7 +8,10 @@ The game stays under the repository license (CC BY-SA 3.0). These scripts are co
 tools/vm-baseline/install-deps-ubuntu.sh
 tools/vm-baseline/build-tiles.sh
 tools/vm-baseline/run-tiles.sh
+tools/vm-baseline/package-linux-tiles.sh
 ```
+
+`package-linux-tiles.sh` wraps the binary already produced by `build-tiles.sh`. It does not rebuild. Runtime requirements and the fresh Ubuntu command are in `doc/PORTABLE-LINUX-0.I-1.md`.
 
 `run-tiles.sh` defaults to `--userdir /tmp/cdda-0i-1-userdir` and refuses `$HOME` and any path containing `cataclysm-dda` unless `CDDA_ALLOW_HOME_USERDIR=1`. Do not pass `USE_HOME_DIR=1` to make.
 

@@ -106,6 +106,15 @@ Disposable world only. No path under `$HOME` or `./save` was created.
 
 The key log, including two load-menu attempts that did not load the character, is `tools/vm-baseline/playtest-keys.txt`. The successful reload keys were Return and `1`.
 
+## Portable archive
+
+`tools/vm-baseline/package-linux-tiles.sh` packs the existing `cataclysm-tiles` binary with `data/`, `gfx/`, fonts, and the license files. It does not rebuild, and it does not include saves, config, `data/cache`, or the playtest world. Runtime requirements are in `doc/PORTABLE-LINUX-0.I-1.md`.
+
+The archive is not stored in git. The copy for this run is:
+
+- `/opt/cursor/artifacts/cataclysmdda-0.I-1-linux64-tiles.tar.gz`
+- `/opt/cursor/artifacts/cataclysmdda-0.I-1-linux64-tiles.tar.gz.sha256`
+
 ## What this VM does not keep
 
-The cloud VM disk, the compiled binary, `/tmp` saves, and the full compiler log are not a durable download and are not published on a port. Rebuild with the scripts above. Saves from this playtest were disposable and should not be reused as a player save.
+The cloud VM disk and the full compiler log are not a durable download and are not published on a port. The portable archive above is the file to keep. It does not include a desktop session. Saves from the playtest were disposable and are not in the archive.
