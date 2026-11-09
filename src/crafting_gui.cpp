@@ -1243,6 +1243,25 @@ static bool selection_ok( const std::vector<const recipe *> &list, const int cur
     return false;
 }
 
+std::string crafting_filter_for_menu_open( const std::string_view caller_filter,
+        const bool have_goto_recipe )
+{
+    if( have_goto_recipe || !caller_filter.empty() ) {
+        return std::string( caller_filter );
+    }
+    return uistate.crafting_filter;
+}
+
+void remember_crafting_filter( const std::string_view filter )
+{
+    uistate.crafting_filter = std::string( filter );
+}
+
+void clear_remembered_crafting_filter()
+{
+    uistate.crafting_filter.clear();
+}
+
 std::pair<Character *, const recipe *> select_crafter_and_crafting_recipe( int &batch_size_out,
         const recipe_id &goto_recipe, Character *crafter, std::string filterstring, bool camp_crafting,
         inventory *inventory_override )
@@ -1250,6 +1269,7 @@ std::pair<Character *, const recipe *> select_crafter_and_crafting_recipe( int &
     if( crafter == nullptr ) {
         return {nullptr, nullptr};
     }
+    filterstring = crafting_filter_for_menu_open( filterstring, goto_recipe.is_valid() );
     recipe_result_info_cache result_info( *crafter );
     recipe_info_cache r_info_cache;
     int line_recipe_info = 0;
@@ -1460,6 +1480,23 @@ std::pair<Character *, const recipe *> select_crafter_and_crafting_recipe( int &
         translated_subtab_map = draw_recipe_subtabs( w_subhead, tab.cur(), subtab.cur_index(),
                                 available_recipes, m,
                                 is_subcat_unread[tab.cur()] );
+
+        // The "Searched" tab alone does not show the query, so a restored
+        // filter would look like a stuck category. Print the query and the
+        // existing reset key on the blank subhead row.
+        if( !batch && !filterstring.empty() ) {
+            const std::string shown = trim( filterstring );
+            const std::string label = string_format( _( "Filter: %s" ), shown );
+            const std::string reset_hint = string_format( _( "[%s] Reset" ),
+                                            ctxt.get_desc( "RESET_FILTER" ) );
+            const int maxw = std::max( 1, getmaxx( w_subhead ) - 4 );
+            nc_color dummy = c_white;
+            print_colored_text( w_subhead, point( 2, 0 ), dummy, c_light_gray,
+                                trim_by_length( string_format( "%s  %s", label, reset_hint ), maxw ) );
+            // draw_recipe_subtabs already pushed a blank row. Refresh again
+            // so the query is actually on screen.
+            wnoutrefresh( w_subhead );
+        }
 
         //Clear the crafting info panel, since that can change on a per-recipe basis
         werase( w_head_info );
@@ -1960,6 +1997,7 @@ std::pair<Character *, const recipe *> select_crafter_and_crafting_recipe( int &
             .edit( filterstring );
 
             if( popup.confirmed() ) {
+                remember_crafting_filter( filterstring );
                 recalc = true;
                 recalc_unread = highlight_unread_recipes;
                 if( batch ) {
@@ -1973,6 +2011,7 @@ std::pair<Character *, const recipe *> select_crafter_and_crafting_recipe( int &
             done = true;
         } else if( action == "RESET_FILTER" ) {
             filterstring.clear();
+            clear_remembered_crafting_filter();
             recalc = true;
             recalc_unread = highlight_unread_recipes;
         } else if( action == "CYCLE_BATCH" && selection_ok( current, line, false ) ) {
@@ -2108,6 +2147,7 @@ std::pair<Character *, const recipe *> select_crafter_and_crafting_recipe( int &
             std::string recipe_name = peek_related_recipe( current[line], available_recipes, *crafter );
             if( !recipe_name.empty() ) {
                 filterstring = recipe_name;
+                remember_crafting_filter( filterstring );
                 recalc = true;
                 recalc_unread = highlight_unread_recipes;
             }

@@ -180,6 +180,10 @@ class uistatedata
 
         // construction menu selections
         std::string construction_filter;
+        // Last crafting-menu search the player confirmed or reset.
+        // World-scoped, same file as construction_filter (uistate.json).
+        // A one-shot caller filter such as "craft this item" is not stored here.
+        std::string crafting_filter;
         construction_group_str_id last_construction = construction_group_str_id::NULL_ID();
         construction_category_id construction_tab = construction_category_id::NULL_ID();
 

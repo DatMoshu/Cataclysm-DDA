@@ -387,6 +387,7 @@ void uistatedata::serialize( JsonOut &json ) const
     json.member( "list_item_downvote_active", list_item_downvote_active );
     json.member( "list_item_priority_active", list_item_priority_active );
     json.member( "construction_filter", construction_filter );
+    json.member( "crafting_filter", crafting_filter );
     json.member( "last_construction", last_construction );
     json.member( "construction_tab", construction_tab );
     json.member( "hidden_recipes", hidden_recipes );
@@ -505,6 +506,7 @@ void uistatedata::deserialize( const JsonObject &jo )
     jo.read( "list_item_priority_active", list_item_priority_active );
 
     jo.read( "construction_filter", construction_filter );
+    jo.read( "crafting_filter", crafting_filter );
     jo.read( "last_construction", last_construction );
     jo.read( "construction_tab", construction_tab );
 

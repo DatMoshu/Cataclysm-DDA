@@ -97,6 +97,8 @@ Do not bind auto pickup as a recommended default. The player should still see th
 
 ### 2. Remember the crafting filter the way construction already does
 
+Implemented on this branch. See `doc/CRAFTING-FILTER.md`. The remembered search is `uistate.crafting_filter` in the world's `uistate.json`. Reset clears it. A one-shot caller filter does not replace it.
+
 Benefit: high for anyone crafting more than once. Risk: low if the filter stays visible.
 
 The `&` action calls `player_character.craft()` with the default empty filter (`handle_action.cpp`). The item menu can pass `r:<item name>` once (`view_recipe_crafting_menu` in `game.cpp`). That string is not what the next `&` opens with. The search popup's history id is `craft_recipe_filter`, so previous searches can be recalled with up/down inside the popup, but the list itself opens unfiltered. Construction copies `uistate.construction_filter` back into the menu and writes it on the way out (`construction.cpp`).
